@@ -12,4 +12,8 @@ object Libs {
 
     val koinCore = "io.insert-koin:koin-core:3.4.2"
     val koinAndroid = "io.insert-koin:koin-android:3.3.0"
+
+    val coreKtx = "androidx.core:core-ktx:1.12.0"
+    val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:2.6.2"
+    val activityCompose = "androidx.activity:activity-compose:1.8.0"
 }

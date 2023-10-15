@@ -4,4 +4,5 @@ object TestLibs {
     val mockk = "io.mockk:mockk:1.13.8"
     val mockWebServer = "com.squareup.okhttp3:mockwebserver:4.11.0"
     val kotlinXCoroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3"
+    val espressoCore = "androidx.test.espresso:espresso-core:3.5.1"
 }
