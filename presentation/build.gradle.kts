@@ -24,20 +24,40 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = Config.javaVersion
+        targetCompatibility = Config.javaVersion
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = Config.jvmTarget
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.0"
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.10.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(platform(Compose.platform))
+    implementation(Compose.ui)
+    implementation(Compose.uiGraphics)
+    implementation(Compose.uiToolingPreview)
+    implementation(Compose.material3)
+
+    testImplementation(TestLibs.junit4)
+
+    androidTestImplementation(TestLibs.junitExt)
+    androidTestImplementation(TestLibs.espressoCore)
+    androidTestImplementation(platform(Compose.platform))
+    androidTestImplementation(Compose.uiTestJunit4)
+
+    debugImplementation(Compose.uiTooling)
+    debugImplementation(Compose.uiTestManifest)
 }
