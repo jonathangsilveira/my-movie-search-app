@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+    implementation(project(Features.domain))
 
     implementation(platform(Compose.platform))
     implementation(Compose.ui)
