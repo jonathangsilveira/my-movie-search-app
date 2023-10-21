@@ -45,10 +45,11 @@ dependencies {
     implementation(Libs.retrofit)
     implementation(Libs.retrofitKotlinSerializationConverter)
 
+    implementation(Libs.koinCore)
+
     testImplementation(TestLibs.junit4)
     testImplementation(TestLibs.mockk)
     testImplementation(TestLibs.kotlinXCoroutinesTest)
-    testImplementation("junit:junit:4.12")
 
     androidTestImplementation(TestLibs.junitExt)
 }
