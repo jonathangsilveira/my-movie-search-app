@@ -19,7 +19,9 @@ import com.silveira.jonathang.android.remote.response.PersonResultResponse
 import com.silveira.jonathang.android.remote.response.TvShowResultResponse
 import kotlinx.serialization.ExperimentalSerializationApi
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
@@ -36,24 +38,28 @@ val remoteKoinModule = module {
             .readTimeout(15L, TimeUnit.SECONDS)
             .connectTimeout(15L, TimeUnit.SECONDS)
             .retryOnConnectionFailure(false)
+            .addInterceptor(
+                HttpLoggingInterceptor()
+                    .setLevel(HttpLoggingInterceptor.Level.BODY)
+            )
             .addInterceptor { chain ->
                 val originalRequest = chain.request()
                 val requestWithHeaders = originalRequest.newBuilder()
                     .addHeader("accept", APPLICATION_JSON)
-                    .addHeader("Authorization", "")
+                    .addHeader("api_key", "")
                     .build()
                 chain.proceed(requestWithHeaders)
             }
             .build()
     }
 
-    factory<Retrofit> {
+    factory {
         Retrofit.Builder()
             .baseUrl("")
             .client(get())
             .addConverterFactory(
                 JsonProviderImpl().json
-                    .asConverterFactory(MediaType.get(APPLICATION_JSON))
+                    .asConverterFactory(APPLICATION_JSON.toMediaType())
             )
             .build()
     }

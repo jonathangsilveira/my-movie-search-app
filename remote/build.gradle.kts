@@ -45,6 +45,8 @@ dependencies {
     implementation(Libs.retrofit)
     implementation(Libs.retrofitKotlinSerializationConverter)
 
+    implementation(Libs.loggingInterceptor)
+
     implementation(Libs.koinCore)
 
     testImplementation(TestLibs.junit4)
