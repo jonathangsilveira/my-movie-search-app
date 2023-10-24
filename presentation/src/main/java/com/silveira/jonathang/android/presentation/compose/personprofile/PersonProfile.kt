@@ -15,9 +15,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.silveira.jonathang.android.presentation.compose.profileimage.ProfileImage
+import com.silveira.jonathang.android.presentation.compose.mediaposter.MediaImage
 import com.silveira.jonathang.android.presentation.compose.tag.Tag
 
 @Composable
@@ -33,7 +32,7 @@ fun PersonProfile(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
-        ProfileImage(
+        MediaImage(
             modifier = Modifier.width(72.dp).height(88.dp),
             contentDescription = "Image of $name"
         )

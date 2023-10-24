@@ -1,4 +1,4 @@
-package com.silveira.jonathang.android.presentation.compose.profileimage
+package com.silveira.jonathang.android.presentation.compose.mediaposter
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -8,7 +8,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 
 @Composable
-fun ProfileImage(
+fun MediaImage(
     modifier: Modifier = Modifier,
     contentDescription: String? = null
 ) {

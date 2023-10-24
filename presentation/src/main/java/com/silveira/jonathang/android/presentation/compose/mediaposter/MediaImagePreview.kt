@@ -1,4 +1,4 @@
-package com.silveira.jonathang.android.presentation.compose.profileimage
+package com.silveira.jonathang.android.presentation.compose.mediaposter
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.wrapContentSize
@@ -9,9 +9,9 @@ import com.silveira.jonathang.android.presentation.theme.MyMovieSearchAppTheme
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
-fun ProfileImageLightPreview() {
+fun MediaImageLightPreview() {
     MyMovieSearchAppTheme {
-        ProfileImage(
+        MediaImage(
             modifier = Modifier.wrapContentSize(),
             contentDescription = "Image of Michael B. Jordan"
         )
@@ -20,9 +20,9 @@ fun ProfileImageLightPreview() {
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun ProfileImageDarkPreview() {
+fun MediaImageDarkPreview() {
     MyMovieSearchAppTheme {
-        ProfileImage(
+        MediaImage(
             modifier = Modifier.wrapContentSize(),
             contentDescription = "Image of Wesley Snipes"
         )
