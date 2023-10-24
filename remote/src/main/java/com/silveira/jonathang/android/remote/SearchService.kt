@@ -7,9 +7,9 @@ import retrofit2.http.QueryMap
 
 interface SearchService {
 
-    @GET("/search/multi")
+    @GET("search/multi")
     suspend fun multiSearch(
         @HeaderMap headersMap: Map<String, String>,
-        @QueryMap queryMap: Map<String, Any?>
+        @QueryMap queryMap: Map<String, String?>
     ) : SearchResponse
 }
