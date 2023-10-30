@@ -1,5 +1,7 @@
 package com.silveira.jonathang.android.domain.model
 
+import com.silveira.jonathang.android.domain.model.MediaTypeEnum.TV
+
 data class TvShowResultModel(
     override val id: Int,
     val name: String,
@@ -8,4 +10,6 @@ data class TvShowResultModel(
     val originalLanguage: String,
     val originCountry: List<String>?,
     val firstAirDate: String?
-) : SearchResultModel
+) : SearchResultModel {
+    override val type: MediaTypeEnum = TV
+}

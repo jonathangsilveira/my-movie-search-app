@@ -1,5 +1,6 @@
 package com.silveira.jonathang.android.presentation.compose.personprofile
 
+import android.content.res.Configuration
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,9 +16,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.silveira.jonathang.android.presentation.compose.mediaposter.MediaImage
+import com.silveira.jonathang.android.presentation.compose.mediaimage.MediaImage
 import com.silveira.jonathang.android.presentation.compose.tag.Tag
+import com.silveira.jonathang.android.presentation.theme.MyMovieSearchAppTheme
 
 @Composable
 fun PersonProfile(
@@ -48,6 +51,30 @@ fun PersonProfile(
             text = name,
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.bodySmall
+        )
+    }
+}
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Composable
+fun PersonProfileLightPreview() {
+    MyMovieSearchAppTheme {
+        PersonProfile(
+            modifier = Modifier.wrapContentSize(),
+            name = "Michael B. Jordan",
+            tagText = "Acting"
+        )
+    }
+}
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun PersonProfileDarkPreview() {
+    MyMovieSearchAppTheme {
+        PersonProfile(
+            modifier = Modifier.wrapContentSize(),
+            name = "Wesley Snipes",
+            tagText = "Acting"
         )
     }
 }
