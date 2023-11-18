@@ -12,7 +12,7 @@ import com.silveira.jonathang.android.remote.response.SearchResponse
 internal class SearchRemoteDataSourceImpl(
     private val searchService: SearchService,
     private val headerToMapMapper: Mapper<SearchHeaderModel, Map<String, String>>,
-    private val queryToMapMapper: Mapper<SearchQueryModel, Map<String, Any>>,
+    private val queryToMapMapper: Mapper<SearchQueryModel, Map<String, String>>,
     private val responseToModelMapper: Mapper<SearchResponse, SearchResultPageModel>
 ) : SearchRemoteDataSource {
 

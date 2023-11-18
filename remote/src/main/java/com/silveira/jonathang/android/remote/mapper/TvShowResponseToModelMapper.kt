@@ -12,10 +12,10 @@ internal class TvShowResponseToModelMapper : Mapper<TvShowResultResponse, TvShow
     ): TvShowResultModel = with(source) {
         TvShowResultModel(
             id = id,
-            name = name,
-            posterPath = posterPath,
+            name = name.orEmpty(),
+            posterPath = posterPath.orEmpty(),
             popularity = popularity,
-            originalLanguage = originalLanguage,
+            originalLanguage = originalLanguage.orEmpty(),
             originCountry = originCountry,
             firstAirDate = firstAirDate
         )
