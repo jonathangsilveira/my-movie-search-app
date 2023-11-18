@@ -1,5 +1,5 @@
 object Features {
     val domain = ":domain"
-    val data = ":data"
+    val remote = ":remote"
     val presentation = ":presentation"
 }
