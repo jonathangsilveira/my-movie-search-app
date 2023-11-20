@@ -18,7 +18,6 @@ import com.silveira.jonathang.android.remote.response.MovieResultResponse
 import com.silveira.jonathang.android.remote.response.PersonResultResponse
 import com.silveira.jonathang.android.remote.response.TvShowResultResponse
 import kotlinx.serialization.ExperimentalSerializationApi
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -55,7 +54,7 @@ val remoteKoinModule = module {
 
     factory {
         Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl("https://api.themoviedb.org/3/")
             .client(get())
             .addConverterFactory(
                 JsonProviderImpl().json
