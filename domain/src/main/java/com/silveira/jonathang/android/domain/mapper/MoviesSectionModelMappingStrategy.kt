@@ -7,7 +7,7 @@ import com.silveira.jonathang.android.domain.model.MoviesSectionModel
 import com.silveira.jonathang.android.domain.model.SearchResultModel
 import com.silveira.jonathang.android.domain.model.SearchSectionModel
 
-class MoviesSectionModelMappingStrategy : ItemsToSectionModelMappingStrategy {
+internal class MoviesSectionModelMappingStrategy : ItemsToSectionModelMappingStrategy {
     override val mediaType: MediaTypeEnum = MOVIE
 
     override fun map(source: List<SearchResultModel>): SearchSectionModel {

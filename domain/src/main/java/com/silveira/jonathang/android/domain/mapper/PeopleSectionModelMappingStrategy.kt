@@ -7,7 +7,7 @@ import com.silveira.jonathang.android.domain.model.PersonResultModel
 import com.silveira.jonathang.android.domain.model.SearchResultModel
 import com.silveira.jonathang.android.domain.model.SearchSectionModel
 
-class PeopleSectionModelMappingStrategy : ItemsToSectionModelMappingStrategy {
+internal class PeopleSectionModelMappingStrategy : ItemsToSectionModelMappingStrategy {
 
     override val mediaType: MediaTypeEnum = PERSON
 
