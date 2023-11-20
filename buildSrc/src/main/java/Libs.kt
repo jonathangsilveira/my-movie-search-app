@@ -10,6 +10,9 @@ object Libs {
     val retrofitKotlinSerializationConverter =
         "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
 
-    val koinCore = "io.insert-koin:koin-core:3.4.2"
-    val koinAndroid = "io.insert-koin:koin-android:3.3.0"
+    val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.10.0"
+
+    val koinCore = "io.insert-koin:koin-core:3.5.0"
+    val koinAndroid = "io.insert-koin:koin-android:3.5.0"
+    val koinAndroidxCompose =  "io.insert-koin:koin-androidx-compose:3.5.0"
 }
