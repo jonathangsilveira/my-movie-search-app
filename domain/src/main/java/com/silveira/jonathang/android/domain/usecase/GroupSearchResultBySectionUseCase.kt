@@ -13,9 +13,7 @@ class GroupSearchResultBySectionUseCase(
 
     operator fun invoke(
         resultPageModel: SearchResultPageModel
-    ) : Result<List<SearchSectionModel>> = runCatching {
-        resultPageModel.results
-            .groupBy { it.mediaType }
-            .mapNotNull { (key, value) -> mappingStrategiesMap[key]?.map(value) }
-    }
+    ) : List<SearchSectionModel> = resultPageModel.results
+        .groupBy { it.mediaType }
+        .mapNotNull { (key, value) -> mappingStrategiesMap[key]?.map(value) }
 }
