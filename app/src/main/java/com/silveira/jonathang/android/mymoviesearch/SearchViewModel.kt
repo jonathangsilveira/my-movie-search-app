@@ -8,6 +8,7 @@ import com.silveira.jonathang.android.domain.model.SearchResultPageModel
 import com.silveira.jonathang.android.domain.model.SearchSectionModel
 import com.silveira.jonathang.android.domain.usecase.GroupSearchResultBySectionUseCase
 import com.silveira.jonathang.android.domain.usecase.MultiSearchUseCase
+import com.silveira.jonathang.android.mymoviesearch.usecase.HandleDebounceQueryUseCase
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,25 +20,22 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-@OptIn(FlowPreview::class)
 internal class SearchViewModel(
     private val multiSearchUseCase: MultiSearchUseCase,
-    private val groupSearchResultBySectionUseCase: GroupSearchResultBySectionUseCase
+    private val groupSearchResultBySectionUseCase: GroupSearchResultBySectionUseCase,
+    private val handleDebounceQueryUseCase: HandleDebounceQueryUseCase
 ) : ViewModel() {
-    private val queryState = MutableStateFlow("")
 
     init {
         viewModelScope.launch {
-            queryState.debounce(500L)
-                .distinctUntilChanged()
-                .filter { query -> query.trim().length >= 3 }
+            handleDebounceQueryUseCase.observe()
                 .flowOn(Default)
                 .collectLatest(::multiSearch)
         }
     }
 
     fun onQueryTextChanged(query: String) {
-        queryState.value = query
+        handleDebounceQueryUseCase(query)
     }
 
     private fun multiSearch(term: String) {
