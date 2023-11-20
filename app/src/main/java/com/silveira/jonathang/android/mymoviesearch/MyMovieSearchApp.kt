@@ -14,7 +14,9 @@ class MyMovieSearchApp : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@MyMovieSearchApp)
-            loadKoinModules(listOf(remoteKoinModule, domainKoinModule, appKoinModule))
+            loadKoinModules(
+                listOf(remoteKoinModule, domainKoinModule, appKoinModule)
+            )
         }
     }
 }

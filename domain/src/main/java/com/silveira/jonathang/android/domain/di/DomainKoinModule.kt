@@ -15,7 +15,9 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val domainKoinModule = module {
-    factoryOf(::MultiSearchUseCase) bind MultiSearchUseCase::class
+    factory {
+        MultiSearchUseCase(repository = get())
+    }
 
     factory {
         GroupSearchResultBySectionUseCase(
