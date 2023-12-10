@@ -53,18 +53,9 @@ internal class SearchViewModel(
         }
     }
 
-    private fun onSuccess(resultPage: SearchResultPageModel) {
-        val message = "${resultPage.totalResults} results in  ${resultPage.totalPages} pages!"
-        println("MyMovieSearchApp -> onSuccess: $message")
-    }
+    private fun onSuccess(resultPage: SearchResultPageModel) = Unit
 
-    private fun onGroupingSuccess(sections: List<SearchSectionModel>) {
-        val groups = sections.joinToString { it.mediaType.name }
-        println("MyMovieSearchApp -> onGroupingSuccess: $groups")
-    }
+    private fun onGroupingSuccess(sections: List<SearchSectionModel>) = Unit
 
-    private fun onFailure(cause: Throwable) {
-        println("MyMovieSearchApp -> onFailure: ${cause.message}")
-        cause.printStackTrace()
-    }
+    private fun onFailure(cause: Throwable) = Unit
 }
