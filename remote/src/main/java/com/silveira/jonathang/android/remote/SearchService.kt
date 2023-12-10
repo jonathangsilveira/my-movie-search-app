@@ -9,7 +9,6 @@ interface SearchService {
 
     @GET("search/multi")
     suspend fun multiSearch(
-        @HeaderMap headersMap: Map<String, String>,
         @QueryMap queryMap: Map<String, String?>
     ) : SearchResponse
 }

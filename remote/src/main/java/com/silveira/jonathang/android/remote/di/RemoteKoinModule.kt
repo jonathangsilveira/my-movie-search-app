@@ -4,8 +4,8 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import com.silveira.jonathang.android.domain.datasource.SearchRemoteDataSource
 import com.silveira.jonathang.android.domain.repository.SearchRepository
 import com.silveira.jonathang.android.remote.JsonProviderImpl
+import com.silveira.jonathang.android.remote.TmdbHeaderInterceptor
 import com.silveira.jonathang.android.remote.datasource.SearchRemoteDataSourceImpl
-import com.silveira.jonathang.android.remote.mapper.HeaderToMapMapper
 import com.silveira.jonathang.android.remote.mapper.MovieResponseToModelMapper
 import com.silveira.jonathang.android.remote.mapper.PersonResponseToModelMapper
 import com.silveira.jonathang.android.remote.mapper.QueryToMapMapper
@@ -28,11 +28,9 @@ import retrofit2.Retrofit
 import retrofit2.create
 import java.util.concurrent.TimeUnit
 
-private const val APPLICATION_JSON = "application/json"
-
 @OptIn(ExperimentalSerializationApi::class)
 val remoteKoinModule = module {
-    single {
+    single<OkHttpClient> {
         OkHttpClient.Builder()
             .readTimeout(15L, TimeUnit.SECONDS)
             .connectTimeout(15L, TimeUnit.SECONDS)
@@ -41,14 +39,7 @@ val remoteKoinModule = module {
                 HttpLoggingInterceptor()
                     .setLevel(HttpLoggingInterceptor.Level.BODY)
             )
-            .addInterceptor { chain ->
-                val originalRequest = chain.request()
-                val requestWithHeaders = originalRequest.newBuilder()
-                    .addHeader("accept", APPLICATION_JSON)
-                    .addHeader("api_key", "")
-                    .build()
-                chain.proceed(requestWithHeaders)
-            }
+            .addInterceptor(TmdbHeaderInterceptor())
             .build()
     }
 
@@ -57,8 +48,9 @@ val remoteKoinModule = module {
             .baseUrl("https://api.themoviedb.org/3/")
             .client(get())
             .addConverterFactory(
-                JsonProviderImpl().json
-                    .asConverterFactory(APPLICATION_JSON.toMediaType())
+                JsonProviderImpl()
+                    .json
+                    .asConverterFactory("application/json".toMediaType())
             )
             .build()
     }
@@ -67,7 +59,6 @@ val remoteKoinModule = module {
         @Suppress("UNCHECKED_CAST")
         SearchRemoteDataSourceImpl(
             searchService = get<Retrofit>().create(),
-            headerToMapMapper = HeaderToMapMapper(),
             queryToMapMapper = QueryToMapMapper(),
             responseToModelMapper = SearchResponseToModelMapper(
                 resultItemToModelMapperMap = mapOf(
