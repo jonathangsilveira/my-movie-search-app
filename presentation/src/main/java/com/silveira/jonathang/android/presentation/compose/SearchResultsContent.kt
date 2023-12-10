@@ -48,14 +48,14 @@ fun SearchResultsContent(
                         onItemClick = onItemClick
                     )
 
-                    TV -> MoviesSectionContent(
-                        data = section as MoviesSectionModel,
+                    TV -> TvShowsSectionContent(
+                        data = section as TvShowsSectionModel,
                         modifier = Modifier.wrapContentSize(),
                         onItemClick = onItemClick
                     )
 
-                    MOVIE -> TvShowsSectionContent(
-                        data = section as TvShowsSectionModel,
+                    MOVIE -> MoviesSectionContent(
+                        data = section as MoviesSectionModel,
                         modifier = Modifier.wrapContentSize(),
                         onItemClick = onItemClick
                     )
