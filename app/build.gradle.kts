@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.silveira.jonathang.android.mymoviesearch"
-    compileSdk = 33
+    compileSdk = AndroidConfig.compileSdk
 
     defaultConfig {
         applicationId = "com.silveira.jonathang.android.mymoviesearch"
-        minSdk = 24
-        targetSdk = 33
+        minSdk = AndroidConfig.minSdk
+        targetSdk = AndroidConfig.targetSdk
         versionCode = 1
         versionName = "1.0"
 
@@ -52,6 +52,7 @@ android {
 dependencies {
     implementation(project(Features.domain))
     implementation(project(Features.remote))
+    implementation(project(Features.presentation))
 
     implementation(Libs.koinCore)
     implementation(Libs.koinAndroid)
