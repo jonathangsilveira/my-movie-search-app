@@ -10,5 +10,5 @@ data class PersonResultModel(
     val knownForDepartment: String,
     val knownFor: List<KnownForModel> = emptyList()
 ) : SearchResultModel {
-    override val type: MediaTypeEnum = PERSON
+    override val mediaType: MediaTypeEnum = PERSON
 }

@@ -6,5 +6,5 @@ data class MoviesSectionModel(
     override val title: String,
     val items: List<MovieResultModel>
 ) : SearchSectionModel {
-    override val itemType: MediaTypeEnum = MOVIE
+    override val mediaType: MediaTypeEnum = MOVIE
 }

@@ -50,6 +50,12 @@ android {
 }
 
 dependencies {
+    implementation(project(Features.domain))
+    implementation(project(Features.remote))
+
+    implementation(Libs.koinCore)
+    implementation(Libs.koinAndroid)
+    implementation(Libs.koinAndroidxCompose)
 
     implementation(Libs.coreKtx)
     implementation(Libs.lifecycleRuntimeKtx)

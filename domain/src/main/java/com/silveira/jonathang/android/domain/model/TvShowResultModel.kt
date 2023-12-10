@@ -11,5 +11,5 @@ data class TvShowResultModel(
     val originCountry: List<String>?,
     val firstAirDate: String?
 ) : SearchResultModel {
-    override val type: MediaTypeEnum = TV
+    override val mediaType: MediaTypeEnum = TV
 }

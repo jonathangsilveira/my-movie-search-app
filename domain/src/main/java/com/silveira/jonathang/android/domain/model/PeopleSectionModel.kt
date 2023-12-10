@@ -6,5 +6,5 @@ data class PeopleSectionModel(
     override val title: String,
     val items: List<PersonResultModel>
 ) : SearchSectionModel {
-    override val itemType: MediaTypeEnum = PERSON
+    override val mediaType: MediaTypeEnum = PERSON
 }
