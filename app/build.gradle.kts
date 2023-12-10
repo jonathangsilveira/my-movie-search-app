@@ -57,9 +57,10 @@ dependencies {
     implementation(Libs.koinAndroid)
     implementation(Libs.koinAndroidxCompose)
 
-    implementation(Libs.coreKtx)
-    implementation(Libs.lifecycleRuntimeKtx)
-    implementation(Libs.activityCompose)
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.activity:activity-compose:1.8.1")
+
     implementation(platform(Compose.platform))
     implementation(Compose.ui)
     implementation(Compose.uiGraphics)
@@ -67,7 +68,7 @@ dependencies {
     implementation(Compose.material3)
     testImplementation(TestLibs.junit4)
     androidTestImplementation(TestLibs.junitExt)
-    androidTestImplementation(TestLibs.espressoCore)
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform(Compose.platform))
     androidTestImplementation(Compose.uiTestJunit4)
     debugImplementation(Compose.uiTooling)
