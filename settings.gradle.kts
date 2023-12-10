@@ -17,3 +17,4 @@ rootProject.name = "My Movie Search App"
 include(":app")
 include(":remote")
 include(":domain")
+include(":presentation")

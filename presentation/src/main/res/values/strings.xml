@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="movie_poster_content_description" translatable="false">
+        Image of %1$s movie poster!
+    </string>
+    <string name="popularity_avaliation">Popularity avaliation of $1f%</string>
+</resources>
