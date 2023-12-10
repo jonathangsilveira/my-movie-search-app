@@ -11,6 +11,8 @@ java {
 dependencies {
     implementation(Libs.kotlinXCoroutinesAndroid)
 
+    implementation(Libs.koinCore)
+
     testImplementation(TestLibs.junit4)
 
     testImplementation(TestLibs.kotlinXCoroutinesTest)

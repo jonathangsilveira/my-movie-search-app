@@ -1,5 +1,7 @@
 package com.silveira.jonathang.android.domain.model
 
+import com.silveira.jonathang.android.domain.model.MediaTypeEnum.PERSON
+
 data class PersonResultModel(
     override val id: Int,
     val name: String,
@@ -7,4 +9,6 @@ data class PersonResultModel(
     val profilePath: String,
     val knownForDepartment: String,
     val knownFor: List<KnownForModel> = emptyList()
-) : SearchResultModel
+) : SearchResultModel {
+    override val mediaType: MediaTypeEnum = PERSON
+}
