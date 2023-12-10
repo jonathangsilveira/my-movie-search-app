@@ -64,7 +64,7 @@ fun SectionContentPreview() {
         val id = it.inc()
         MovieResultModel(
             id = id,
-            name = "Movie #$id",
+            title = "Movie #$id",
             popularity = 5.0,
             releaseDate = "1990",
             posterPath = "",
@@ -79,10 +79,10 @@ fun SectionContentPreview() {
             items(
                 items = movies,
                 key = { item -> item.id },
-                contentType = { item -> item.type },
+                contentType = { item -> item.mediaType },
                 itemContent = { item ->
                     MovieMedia(
-                        name = item.name,
+                        name = item.title,
                         popularity = item.popularity
                     )
                 }

@@ -38,10 +38,10 @@ fun SearchResultsContent(
     ) {
         items(
             items = sections,
-            key = { section -> section.itemType },
-            contentType = { section -> section.itemType },
+            key = { section -> section.mediaType },
+            contentType = { section -> section.mediaType },
             itemContent = { section ->
-                when (section.itemType) {
+                when (section.mediaType) {
                     PERSON -> PeopleSectionContent(
                         data = section as PeopleSectionModel,
                         modifier = Modifier.wrapContentSize(),
@@ -78,7 +78,7 @@ internal fun PeopleSectionContent(
         items(
             items = data.items,
             key = { item -> item.id },
-            contentType = { item -> item.type },
+            contentType = { item -> item.mediaType },
             itemContent = { item ->
                 PersonProfile(
                     name = item.name,
@@ -86,7 +86,7 @@ internal fun PeopleSectionContent(
                     profileImagePath = item.profilePath,
                     modifier = Modifier.wrapContentSize(),
                     onClick = {
-                        onItemClick(item.type, item.id)
+                        onItemClick(item.mediaType, item.id)
                     }
                 )
             }
@@ -107,14 +107,14 @@ internal fun MoviesSectionContent(
         items(
             items = data.items,
             key = { item -> item.id },
-            contentType = { item -> item.type },
+            contentType = { item -> item.mediaType },
             itemContent = { item ->
                 MovieMedia(
-                    name = item.name,
+                    name = item.title,
                     popularity = item.popularity,
                     posterPath = item.posterPath,
                     modifier = Modifier.wrapContentSize(),
-                    onClick = { onItemClick(item.type, item.id) }
+                    onClick = { onItemClick(item.mediaType, item.id) }
                 )
             }
         )
@@ -134,14 +134,14 @@ internal fun TvShowsSectionContent(
         items(
             items = data.items,
             key = { item -> item.id },
-            contentType = { item -> item.type },
+            contentType = { item -> item.mediaType },
             itemContent = { item ->
                 MovieMedia(
                     name = item.name,
                     popularity = item.popularity,
                     posterPath = item.posterPath,
                     modifier = Modifier.wrapContentSize(),
-                    onClick = { onItemClick(item.type, item.id) }
+                    onClick = { onItemClick(item.mediaType, item.id) }
                 )
             }
         )
@@ -158,7 +158,7 @@ fun SearchResultsContentPreview() {
                 val id = it.inc()
                 MovieResultModel(
                     id = id,
-                    name = "Movie #$id",
+                    title = "Movie #$id",
                     popularity = 5.0,
                     releaseDate = "1990",
                     posterPath = "",
