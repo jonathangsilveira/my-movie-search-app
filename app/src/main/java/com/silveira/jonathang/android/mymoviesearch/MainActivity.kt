@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import com.silveira.jonathang.android.domain.model.MediaTypeEnum
 import com.silveira.jonathang.android.presentation.compose.SearchResultsContent
 import com.silveira.jonathang.android.presentation.theme.MyMovieSearchAppTheme
 import org.koin.androidx.compose.koinViewModel
@@ -35,7 +36,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyMovieSearchAppTheme {
-                SearchScreen()
+                val viewModel = koinViewModel<SearchViewModel>()
+                val viewState: SearchViewState by viewModel.viewState.collectAsState()
+                SearchScreen(
+                    viewState = viewState,
+                    modifier = Modifier.fillMaxSize(),
+                    onSearchFieldTextChange = viewModel::onQueryTextChanged,
+                    onItemClicked = viewModel::onItemClicked
+                )
             }
         }
     }
@@ -43,19 +51,24 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchScreen() {
-    val viewModel = koinViewModel<SearchViewModel>()
+fun SearchScreen(
+    viewState: SearchViewState,
+    modifier: Modifier = Modifier,
+    onSearchFieldTextChange: (newText: String) -> Unit = {},
+    onItemClicked: (MediaTypeEnum, Int) -> Unit = { _, _ -> }
+) {
     Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+        color = MaterialTheme.colorScheme.background,
+        modifier = modifier
     ) {
         Column(
-            modifier = Modifier
-                .fillMaxWidth(),
             verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxWidth()
         ) {
-            var textFieldValue by remember { mutableStateOf(TextFieldValue(text = "")) }
+            var textFieldValue by remember {
+                mutableStateOf(TextFieldValue(text = ""))
+            }
             TextField(
                 value = textFieldValue.text,
                 label = {
@@ -65,8 +78,8 @@ fun SearchScreen() {
                     )
                 },
                 onValueChange = { newText ->
+                    onSearchFieldTextChange(newText)
                     textFieldValue = textFieldValue.copy(text = newText)
-                    viewModel.onQueryTextChanged(newText)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -77,7 +90,6 @@ fun SearchScreen() {
                     .fillMaxWidth()
                     .height(8.dp)
             )
-            val viewState: SearchViewState by viewModel.viewState.collectAsState()
             when (viewState) {
                 SearchViewState.EmptyState -> Text(
                     text = "Search for: Movies, TV Shows and People!",
@@ -102,8 +114,8 @@ fun SearchScreen() {
                     )
 
                 is SearchViewState.Success -> SearchResultsContent(
-                    sections = (viewState as SearchViewState.Success).sections,
-                    onItemClick = viewModel::onItemClicked,
+                    sections = viewState.sections,
+                    onItemClick = onItemClicked,
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight()
