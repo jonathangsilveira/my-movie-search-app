@@ -6,19 +6,19 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
 
 private const val DEBOUNCE_TIME_MILLIS = 500L
-
-private const val MIN_QUERY_LENGTH = 3
 
 @OptIn(FlowPreview::class)
 internal class HandleDebounceQueryUseCase {
     private val queryState = MutableStateFlow("")
 
-    fun observe(): Flow<String> =
+    fun consume(minQueryLength: Int): Flow<String> =
         queryState.debounce(DEBOUNCE_TIME_MILLIS)
             .distinctUntilChanged()
-            .filter { query -> query.trim().length >= MIN_QUERY_LENGTH }
+            .map { query -> query.trim() }
+            .filter { query -> query.length >= minQueryLength }
 
     operator fun invoke(query: String) {
         queryState.value = query

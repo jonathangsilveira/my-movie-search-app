@@ -26,7 +26,7 @@ import com.silveira.jonathang.android.presentation.theme.MyMovieSearchAppTheme
 fun PersonProfile(
     modifier: Modifier = Modifier,
     name: String,
-    tagText: String,
+    tagText: String?,
     profileImagePath: String? = null,
     onClick: () -> Unit = {}
 ) {
@@ -39,10 +39,12 @@ fun PersonProfile(
             modifier = Modifier.width(72.dp).height(88.dp),
             contentDescription = "Image of $name"
         )
-        Tag(
-            modifier = Modifier.wrapContentSize(),
-            label = tagText
-        )
+        if (!tagText.isNullOrEmpty()) {
+            Tag(
+                modifier = Modifier.wrapContentSize(),
+                label = tagText
+            )
+        }
         Text(
             modifier = Modifier.fillMaxWidth()
                 .wrapContentHeight(),

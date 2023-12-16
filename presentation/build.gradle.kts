@@ -55,7 +55,7 @@ dependencies {
     testImplementation(TestLibs.junit4)
 
     androidTestImplementation(TestLibs.junitExt)
-    androidTestImplementation(TestLibs.espressoCore)
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform(Compose.platform))
     androidTestImplementation(Compose.uiTestJunit4)
 
