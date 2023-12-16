@@ -22,6 +22,8 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+private const val MIN_QUERY_LENGTH = 3
+
 internal class SearchViewModel(
     private val multiSearchUseCase: MultiSearchUseCase,
     private val groupSearchResultBySectionUseCase: GroupSearchResultBySectionUseCase,
@@ -33,7 +35,7 @@ internal class SearchViewModel(
 
     init {
         viewModelScope.launch {
-            handleDebounceQueryUseCase.observe()
+            handleDebounceQueryUseCase.consume(MIN_QUERY_LENGTH)
                 .flowOn(Default)
                 .collectLatest(::multiSearch)
         }
@@ -44,7 +46,7 @@ internal class SearchViewModel(
     }
 
     fun onItemClicked(mediaType: MediaTypeEnum, id: Int) {
-        Log.d("Search", "Item with media type $mediaType and id #$id was clicked")
+        Log.d("Search", "Item $id with media type $mediaType was clicked")
     }
 
     private fun multiSearch(term: String) {
