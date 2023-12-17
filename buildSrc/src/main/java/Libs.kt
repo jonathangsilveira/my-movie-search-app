@@ -15,4 +15,6 @@ object Libs {
     val koinCore = "io.insert-koin:koin-core:3.5.0"
     val koinAndroid = "io.insert-koin:koin-android:3.5.0"
     val koinAndroidxCompose =  "io.insert-koin:koin-androidx-compose:3.5.0"
+
+    val coilCompose = "io.coil-kt:coil-compose:2.5.0"
 }

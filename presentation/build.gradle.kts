@@ -52,6 +52,8 @@ dependencies {
     implementation(Compose.uiToolingPreview)
     implementation(Compose.material3)
 
+    implementation(Libs.coilCompose)
+
     testImplementation(TestLibs.junit4)
 
     androidTestImplementation(TestLibs.junitExt)
